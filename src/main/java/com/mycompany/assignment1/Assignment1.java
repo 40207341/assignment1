@@ -28,14 +28,14 @@ public class Assignment1 {
         System.out.println("Average Temperature in London (Celsius)");
         System.out.println();
 
-        // Input 2023
+        // Input temperature for 2023
         System.out.println("Enter temperatures for 2023:");
         for (int i = 0; i < 12; i++) {
             System.out.print(months[i] + ": ");
             temperatures2023[i] = scanner.nextInt();
         }
 
-        // Input 2024
+        // Input temperature for 2024
         System.out.println();
         System.out.println("Enter temperatures for 2024:");
         for (int i = 0; i < 12; i++) {
@@ -43,20 +43,24 @@ public class Assignment1 {
             temperatures2024[i] = scanner.nextInt();
         }
 
-        // Display formatted table
+        // Display temperature data for 2023
         System.out.println();
-        displayTable(months, temperatures2023, temperatures2024);
+        System.out.println("--- 2023 Temperature Data ---");
+        displayData(months, temperatures2023);
 
-        // Display averages
+        // Display temperature data for 2024
         System.out.println();
-        System.out.printf("Average temperature for 2023: %.2f°C%n",
-                calculateAverage(temperatures2023));
-        System.out.printf("Average temperature for 2024: %.2f°C%n",
-                calculateAverage(temperatures2024));
+        System.out.println("--- 2024 Temperature Data ---");
+        displayData(months, temperatures2024);
 
-        /*
-         * LINEAR SEARCH SECTION
-         */
+        // Display averages for both years
+        System.out.println();
+        System.out.println("Average temperature for 2023: "
+                + calculateAverage(temperatures2023) + "°C");
+        System.out.println("Average temperature for 2024: "
+                + calculateAverage(temperatures2024) + "°C");
+
+        /* LINEAR SEARCH SECTION*/
         System.out.println();
         System.out.println("Search a record for a particular month.");
         System.out.println();
@@ -78,28 +82,15 @@ public class Assignment1 {
         scanner.close();
     }
 
-    // Properly aligned table using printf
-    public static void displayTable(String[] months, int[] data2023, int[] data2024) {
+    // Display data
+    public static void displayData(String[] months, int[] temperatureData) {
 
-        System.out.printf("%-6s", "Year");
         for (int i = 0; i < 12; i++) {
-            System.out.printf("%-6s", months[i]);
+            System.out.println(months[i] + ": " + temperatureData[i] + "°C");
         }
-        System.out.println();
-
-        System.out.printf("%-6s", "2023");
-        for (int i = 0; i < 12; i++) {
-            System.out.printf("%-6s", data2023[i] + "°C");
-        }
-        System.out.println();
-
-        System.out.printf("%-6s", "2024");
-        for (int i = 0; i < 12; i++) {
-            System.out.printf("%-6s", data2024[i] + "°C");
-        }
-        System.out.println();
     }
 
+    // Linear search method
     public static void linearSearch(String[] months, int[] temperatureData,
                                     String targetMonth, String year) {
 
@@ -119,6 +110,7 @@ public class Assignment1 {
         }
     }
 
+    // Average calculation method
     public static double calculateAverage(int[] temperatureData) {
 
         int total = 0;
@@ -130,4 +122,3 @@ public class Assignment1 {
         return (double) total / 12;
     }
 }
-
